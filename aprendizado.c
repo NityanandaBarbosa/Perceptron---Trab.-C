@@ -1,22 +1,46 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(){
-    FILE*file;
-    file = fopen("A_l.txt", "r");
-    if(file == NULL){
-        printf("Arquivo invalido");
+int main(void)
+{
+    char linha[100]; /* ou maior se vc precisar */
+    FILE *arquivo;
+    float x1[30],x2[30],y[30];
+    float w1 = 1;
+    float w2 = 1;
+    float taxa = 0.01;
+
+    arquivo = fopen("A_l.txt", "r");
+    if(arquivo == NULL) {
+        printf("arquivo desconhecido - nome_do_arquivo.txt\n");
         return 0;
-        fclose(file);
-    }else{
-        
-        float dados[30][3];
-        float x,y,z;
-        while(!feof(file)){
-            fscanf(file,"%f;%f;%f", &x, &y, &z);
-            printf("%1.f;%1.f;%1.f\n",x,y,z);
-        fclose(file);     
-        }   
     }
+    int i=0;
+    while(fgets(linha, sizeof(linha), arquivo) != NULL){
+        fscanf(arquivo,"%f %f %f", &x1[i], &x2[i], &y[i]);
+        i++;
+    }
+    for(i=0; i<29; i++){
+        printf("%.2f %.2f %.2f\n", x1[i],x2[i],y[i]);
+    }
+    fclose(arquivo);
+    
+    int c = 0;
+    float yr =0;
+    while(c!=30){
+        yr = (w1*x1[i])+(w2*x2[i]);
+        if(y >=0){
+            yr=1;
+        }else{
+            yr=0;
+        }
+
+        
+
+    }
+
+
+    
     return 0;
+
 }
+ 
