@@ -43,9 +43,7 @@ int main(void){
         
         if(yr >= 0){
             yr = 1;
-        }
-
-        else if(yr < 0){
+        } else if(yr < 0){
             yr = 0;
         }
 
