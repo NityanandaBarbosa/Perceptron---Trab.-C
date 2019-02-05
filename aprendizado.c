@@ -1,22 +1,25 @@
 #include <stdio.h>
 
-int main(void)
-{
-    char linha[100]; /* ou maior se vc precisar */
-    
+float definirW1deVetor();
+float definirW2deVetor();
+
+int main(void){
+    char linha[100];
+
     float x1[30],x2[30],y[30];
-    float w1 = 1;
-    float w2 = 1;
     float taxa = 0.01;
 
     FILE *arquivo;
-    
+        
     arquivo = fopen("A_l.txt", "r");
     
     if(arquivo == NULL) {
-        printf("arquivo desconhecido - nome_do_arquivo.txt\n");
+        printf("Arquivo informado não está correto.\n");
         return 0;
     }
+
+    float w1 = definirW1deVetor();
+    float w2 = definirW2deVetor();
     
     int i = 0;
     
@@ -25,8 +28,8 @@ int main(void)
         i++;
     }
     
-    for(i=0; i<29; i++){
-        printf("%.2f %.2f %.2f\n", x1[i],x2[i],y[i]);
+    for(i=0; i<30; i++){
+    printf("c=%d %.2f %.2f %.2f\n", i,x1[i],x2[i],y[i]);
     }
     
     fclose(arquivo);
@@ -43,7 +46,23 @@ int main(void)
         }
     }
 
-    return 0;
-
+return 0;
 }
- 
+
+float  definirW1deVetor(){
+    float w1;
+
+    printf("Informe o valor para a primeira coordenada do vetor inicial: ");
+    scanf("%f", &w1);
+
+    return w1;
+}
+
+float definirW2deVetor(){
+    float w2;
+
+    printf("Informe o valor da segunda coordenada do vetor inicial: ");
+    scanf("%f", &w2);
+
+    return w2;
+}
