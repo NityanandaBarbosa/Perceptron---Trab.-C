@@ -9,10 +9,18 @@ int main(void){
 
     float x1[30], x2[30], y[30];
     float taxa = 0.01;
+    int escolha = 3; 
+
+    printf("Digite 1 para A_l ou Digite 2 para B_l :\n");
+    while(escolha<1 || escolha>2){
+        scanf("%d",&escolha);
+    }
 
     FILE *arquivo;
-        
-    arquivo = fopen("A_l.txt", "r");
+    if(escolha == 1)
+        arquivo = fopen("A_l.txt", "r");
+    else
+       arquivo = fopen("B_l.txt", "r"); 
     
     if(arquivo == NULL) {
         printf("Arquivo informado não está correto.\n");
@@ -60,7 +68,7 @@ int main(void){
         yr = 0;
         printf("%d  w1: %.2f w2: %.2f d:%.2f\n",c,w1,w2,d);
     }
-    printf("Vetor W descoberto!\nw1:%.2f  w2:%.2f.",w1,w2);
+    printf("Vetor W descoberto!\nw1:%.2f  w2:%.2f.\n",w1,w2);
       
       return 0;
 }
