@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-float definirW1deVetor();
-float definirW2deVetor();
+void definirVetor(float *, float*);
+int escolher();
 float porcentTest(int escolha,float w1,float w2);
 
 int main(void){
@@ -11,15 +11,14 @@ int main(void){
 
     float x1[30], x2[30], y[30];
     float taxa = 0.01;
-    int escolha = 3; 
-
-    printf("Digite 1 para A_l ou Digite 2 para B_l :\n");
-    while(escolha<1 || escolha>2){
-        scanf("%d",&escolha);
-    }
+     
+    int opcao = escolher();
+    float w1 = 0.0, w2 = 0.0;
+    
 
     FILE *arquivo;
-    if(escolha == 1)
+    
+    if(opcao == 1)
         arquivo = fopen("A_l.txt", "r");
     else
        arquivo = fopen("B_l.txt", "r"); 
@@ -29,8 +28,7 @@ int main(void){
         return 0;
     }
 
-    float w1 = definirW1deVetor();
-    float w2 = definirW2deVetor();
+    definirVetor(&w1, &w2);
     
     int i = 0;
     
@@ -76,26 +74,31 @@ int main(void){
     printf("\nAgora sera calculado a taxa de acerto do vetor W, com respectivo arquivo de Teste.\n");
     sleep(2);
     
-    porcentTest(escolha,w1,w2);
+    porcentTest(opcao,w1,w2);
       return 0;
 }
 
-float  definirW1deVetor(){
-    float w1;
-
+void definirVetor(float *w1, float *w2){
+    float coordenada;
+   
     printf("Informe o valor para a primeira coordenada do vetor inicial: ");
-    scanf("%f", &w1);
-
-    return w1;
+    scanf("%f", &coordenada);
+    *w1 = coordenada;
+    
+    printf("Informe o valor para a segunda coordenada do vetor inicial: ");
+    scanf("%f", &coordenada);
+    *w2 = coordenada;
 }
 
-float definirW2deVetor(){
-    float w2;
-
-    printf("Informe o valor da segunda coordenada do vetor inicial: ");
-    scanf("%f", &w2);
-
-    return w2;
+int escolher(){
+    int opcao = 0;
+    
+    while(opcao < 1 || opcao > 2){
+        printf("Digite 1 para A_l ou Digite 2 para B_l :\n");
+        scanf("%d", &opcao);
+    }
+    
+    return opcao;
 }
 
 float porcentTest(int escolha,float w1,float w2){
