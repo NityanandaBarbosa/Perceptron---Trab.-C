@@ -3,6 +3,7 @@
 
 float definirW1deVetor();
 float definirW2deVetor();
+float porcentTest(int escolha,float w1,float w2);
 
 int main(void){
 
@@ -71,10 +72,39 @@ int main(void){
     }
     sleep(2);
     printf("\nVetor W descoberto!\nw1:%.2f  w2:%.2f.\n",w1,w2);
-    sleep(3);
+    sleep(2);
+    printf("\nAgora sera calculado a taxa de acerto do vetor W, com respectivo arquivo de Teste.\n");
+    sleep(2);
     
+    porcentTest(escolha,w1,w2);
+      return 0;
+}
+
+float  definirW1deVetor(){
+    float w1;
+
+    printf("Informe o valor para a primeira coordenada do vetor inicial: ");
+    scanf("%f", &w1);
+
+    return w1;
+}
+
+float definirW2deVetor(){
+    float w2;
+
+    printf("Informe o valor da segunda coordenada do vetor inicial: ");
+    scanf("%f", &w2);
+
+    return w2;
+}
+
+float porcentTest(int escolha,float w1,float w2){
     
-    if(escolha == 1)
+    char linha[100];
+    float x1[30], x2[30], y[30];
+    
+    FILE *arquivo;
+        if(escolha == 1)
         arquivo = fopen("A_t.txt", "r");
     else
        arquivo = fopen("B_t.txt", "r");
@@ -82,7 +112,7 @@ int main(void){
         printf("\narquivo desconhecido - nome_do_arquivo.txt\n");
         return 0;
     }
-    i=0;
+    int i=0;
     while(fgets(linha, sizeof(linha), arquivo) != NULL){
         fscanf(arquivo,"%f %f %f", &x1[i], &x2[i], &y[i]);
         i++;
@@ -93,7 +123,7 @@ int main(void){
     int acerto=0;
     printf("\n");
     sleep(1);
-    for(i=0;i<29;i++){
+    for(i=0;i<30;i++){
         float yr=0.0;
         d = 0;
         yr = (w1*x1[i])+(w2*x2[i]);
@@ -114,25 +144,7 @@ int main(void){
     float porcAcerto;
     porcAcerto = acerto*100/i;
     sleep(2);
-    printf("Taxa de acerto foi : %.2f", porcAcerto);
-      
-      return 0;
-}
+    printf("\nTaxa de acerto foi : %.2f\n", porcAcerto);
 
-float  definirW1deVetor(){
-    float w1;
-
-    printf("Informe o valor para a primeira coordenada do vetor inicial: ");
-    scanf("%f", &w1);
-
-    return w1;
-}
-
-float definirW2deVetor(){
-    float w2;
-
-    printf("Informe o valor da segunda coordenada do vetor inicial: ");
-    scanf("%f", &w2);
-
-    return w2;
+    return 0;
 }
